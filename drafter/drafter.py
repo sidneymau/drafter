@@ -324,15 +324,13 @@ def watermark(
 ):
     fig_width, fig_height = fig.get_size_inches()
     angle = np.degrees(np.arctan2(fig_height, fig_width))
-    size = in_to_pt(np.hypot(fig_width, fig_height) / 12)
-    print(size)
     fig.text(
         0.5,
         0.5,
         text,
         color="k",
         alpha=0.1,
-        fontsize=size,
+        fontsize=72,
         rotation=angle,
         horizontalalignment="center",
         verticalalignment="center",
