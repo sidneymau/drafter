@@ -27,7 +27,9 @@ def set_type(font="monospace", latex=True):
             mpl.rcParams["text.latex.preamble"] = (
                 r"\renewcommand*\familydefault{\ttdefault}"  # use typewriter text as default
                 r"\usepackage[noendash,LGRgreek]{mathastext}"  # typeset math as text
-                r"\MTfamily{cmtt}\MTgreekfont{cmtt}\Mathastext"  # use typewriter text for math
+                r"\MTfamily{\ttdefault}"
+                r"\MTgreekfont{\ttdefault}"
+                r"\Mathastext"  # use typewriter text for math
             )
 
         if font not in TexManager._font_families:

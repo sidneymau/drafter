@@ -3,7 +3,6 @@ import getpass
 import logging
 import warnings
 
-from cycler import cycler
 import matplotlib as mpl
 import matplotlib.cbook as cbook
 import matplotlib.collections as mcoll
@@ -291,11 +290,12 @@ def save_fig(
     fname,
 ):
     logger.info(f"saving {fig} to {fname}")
+    author = getpass.getuser()
 
     fig.savefig(
         fname,
         metadata={
-            "Author": getpass.getuser(),
+            "Author": author,
         },
     )
 
@@ -306,7 +306,7 @@ def sign(
     fig
 ):
     author = getpass.getuser()
-    today = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+    today = datetime.now().strftime("%Y-%m-%d-%H:%M:%S")
     fig.text(
         1.0,
         0.0,
