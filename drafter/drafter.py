@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 import getpass
 import logging
 import warnings
@@ -306,7 +306,9 @@ def sign(
     fig
 ):
     author = getpass.getuser()
-    today = datetime.now().strftime("%Y-%m-%d-%H:%M:%S")
+    utc_dt = datetime.now(timezone.utc)
+    dt = utc_dt.astimezone()
+    today = dt.strftime("%Y-%m-%d %H:%M:%S %Z")
     fig.text(
         1.0,
         0.0,
