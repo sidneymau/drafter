@@ -15,7 +15,7 @@ def set_type(font="monospace", latex=True):
     mpl.rcParams["font.size"] = 10.0
 
     if latex:
-        logger.info(f"setting type in latex")
+        logger.info(f"setting type with latex")
         latex_path = shutil.which("latex")
 
         if latex_path is None:

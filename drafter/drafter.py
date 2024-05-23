@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+import importlib
 import getpass
 import logging
 import warnings
@@ -7,9 +8,8 @@ import matplotlib as mpl
 import matplotlib.cbook as cbook
 import matplotlib.collections as mcoll
 import matplotlib.colors as mcolors
-# import matplotlib.figure as mfigure
+import matplotlib.figure as mfigure
 import matplotlib.image as mimage
-import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 from mpl_toolkits.axes_grid1 import Divider, Size
 import numpy as np
@@ -27,8 +27,8 @@ MAX_WIDTH = 8.5
 MAX_HEIGHT = 11
 
 # Beamer
-# MAX_WIDTH = cm_to_in(16)  # 6.30
-# MAX_HEIGHT = cm_to_in(9)  # 3.54
+# MAX_WIDTH = 6.30  # cm_to_in(16)
+# MAX_HEIGHT = 3.54  # cm_to_in(9)
 
 
 def setup(styles=[]):
@@ -42,6 +42,35 @@ def cm_to_in(l, /):
 
 def in_to_pt(l, /):
     return l * 6 * 12
+
+
+def make_figure(**kwargs):
+    import matplotlib.pyplot as plt
+
+    backend_name = mpl.get_backend()
+    logger.info(f"making figure with backend {backend_name}")
+
+    fig = plt.figure(**kwargs)
+
+    fig.patch.set_alpha(0)
+
+    # backend_name = mpl.get_backend()
+    # logger.info(f"making figure with backend {backend_name}")
+
+    # module = importlib.import_module(cbook._backend_module_name(backend_name))
+    # canvas_class = module.FigureCanvas
+
+    # fig = mfigure.Figure(**kwargs)
+    # canvas = canvas_class(fig)
+
+    # logger.info(f"making figure with pdf backend")
+
+    # from matplotlib.backends.backend_pdf import FigureCanvas
+
+    # fig = mfigure.Figure(**kwargs)
+    # canvas = FigureCanvas(fig)
+
+    return fig
 
 
 def make_axes(
@@ -69,8 +98,9 @@ def make_axes(
 ):
 
     logger.info(f"making figure of size ({fig_width}, {fig_height})")
-    fig = plt.figure(figsize=(fig_width, fig_height))
+    # fig = plt.figure(figsize=(fig_width, fig_height))
     # fig = mfigure.Figure(figsize=(fig_width, fig_height))
+    fig = make_figure(figsize=(fig_width, fig_height))
 
     fig_width, fig_height = fig.get_size_inches()
     if fig_width > MAX_WIDTH:
@@ -326,13 +356,14 @@ def watermark(
 ):
     fig_width, fig_height = fig.get_size_inches()
     angle = np.degrees(np.arctan2(fig_height, fig_width))
+    size = in_to_pt(np.hypot(fig_width, fig_height) / 12)
     fig.text(
         0.5,
         0.5,
         text,
         color="k",
         alpha=0.1,
-        fontsize=72,
+        fontsize=size,
         rotation=angle,
         horizontalalignment="center",
         verticalalignment="center",

@@ -19,8 +19,10 @@ ytick.labelsize : 10
 
 lines.color: k
 lines.linestyle  : -
-lines.linewidth: 1
+lines.linewidth: 0.8
 lines.markersize: 1
+
+patch.linewidth: 0.8
 
 scatter.marker: .
 
