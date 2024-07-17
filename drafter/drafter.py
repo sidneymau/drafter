@@ -88,7 +88,7 @@ def make_axes(
     left_margin=None,
     right_margin=None,
     top_margin=None,
-    bottom_marging=None,
+    bottom_margin=None,
     x_gutter=None,
     y_gutter=None,
     cbar_width=1/8,
@@ -132,11 +132,11 @@ def make_axes(
         else:
             top_margin = y_margin
 
-    if bottom_marging is None:
+    if bottom_margin is None:
         if y_margin is None:
-            bottom_marging = margin
+            bottom_margin = margin
         else:
-            bottom_marging = y_margin
+            bottom_margin = y_margin
 
     if left_margin is None:
         raise ValueError(f"unspecified left margin!")
@@ -144,7 +144,7 @@ def make_axes(
         raise ValueError(f"unspecified right margin!")
     if top_margin is None:
         raise ValueError(f"unspecified top margin!")
-    if bottom_marging is None:
+    if bottom_margin is None:
         raise ValueError(f"unspecified bottom margin!")
 
     if cbar_pad is not None:
@@ -168,7 +168,7 @@ def make_axes(
             h.append(Size.Fixed(x_gutter))
     logger.info(f"made {len(h)} horizontal locations")
 
-    v = [Size.Fixed(bottom_marging)]
+    v = [Size.Fixed(bottom_margin)]
     v_idx = []
     for i in range(nrows):
         v_idx.append(len(v))
