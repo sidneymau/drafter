@@ -324,6 +324,7 @@ def save_fig(
 
     fig.savefig(
         fname,
+        dpi=300,
         metadata={
             "Author": author,
         },
