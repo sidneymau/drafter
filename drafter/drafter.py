@@ -83,14 +83,14 @@ def make_axes(
     height=2,
     margin=1,
     gutter=1,
-    x_margin=None,
-    y_margin=None,
+    horizontal_margin=None,
+    vertical_margin=None,
     left_margin=None,
     right_margin=None,
     top_margin=None,
     bottom_margin=None,
-    x_gutter=None,
-    y_gutter=None,
+    horizontal_gutter=None,
+    vertical_gutter=None,
     cbar_width=1/8,
     cbar_pad=1/8,
     sharex=None,
@@ -108,35 +108,35 @@ def make_axes(
     if fig_height > MAX_HEIGHT:
         warnings.warn(f"Figure height ({fig_height}) greater than maximum height ({MAX_HEIGHT})")
 
-    if x_gutter is None:
-        x_gutter = gutter
+    if horizontal_gutter is None:
+        horizontal_gutter = gutter
 
-    if y_gutter is None:
-        y_gutter = gutter
+    if vertical_gutter is None:
+        vertical_gutter = gutter
 
     if left_margin is None:
-        if x_margin is None:
+        if horizontal_margin is None:
             left_margin = margin
         else:
-            left_margin = x_margin
+            left_margin = horizontal_margin
 
     if right_margin is None:
-        if x_margin is None:
+        if horizontal_margin is None:
             right_margin = margin
         else:
-            right_margin = x_margin
+            right_margin = horizontal_margin
 
     if top_margin is None:
-        if y_margin is None:
+        if vertical_margin is None:
             top_margin = margin
         else:
-            top_margin = y_margin
+            top_margin = vertical_margin
 
     if bottom_margin is None:
-        if y_margin is None:
+        if vertical_margin is None:
             bottom_margin = margin
         else:
-            bottom_margin = y_margin
+            bottom_margin = vertical_margin
 
     if left_margin is None:
         raise ValueError(f"unspecified left margin!")
@@ -148,11 +148,11 @@ def make_axes(
         raise ValueError(f"unspecified bottom margin!")
 
     if cbar_pad is not None:
-        x_gutter -= cbar_pad
+        horizontal_gutter -= cbar_pad
         right_margin -= cbar_pad
 
     if cbar_width is not None:
-        x_gutter -= cbar_width
+        horizontal_gutter -= cbar_width
         right_margin -= cbar_width
 
     h = [Size.Fixed(left_margin)]
@@ -165,7 +165,7 @@ def make_axes(
         if i == ncols - 1:
             h.append(Size.Fixed(right_margin))
         else:
-            h.append(Size.Fixed(x_gutter))
+            h.append(Size.Fixed(horizontal_gutter))
     logger.info(f"made {len(h)} horizontal locations")
 
     v = [Size.Fixed(bottom_margin)]
@@ -176,7 +176,7 @@ def make_axes(
         if i == nrows - 1:
             v.append(Size.Fixed(top_margin))
         else:
-            v.append(Size.Fixed(y_gutter))
+            v.append(Size.Fixed(vertical_gutter))
     logger.info(f"made {len(v)} vertical locations")
 
     total_width = sum(_h.fixed_size for _h in h)
