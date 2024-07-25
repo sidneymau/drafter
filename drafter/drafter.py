@@ -52,7 +52,7 @@ def make_figure(**kwargs):
 
     fig = plt.figure(**kwargs)
 
-    fig.patch.set_alpha(0)
+    # fig.patch.set_alpha(0)
 
     # backend_name = mpl.get_backend()
     # logger.info(f"making figure with backend {backend_name}")
