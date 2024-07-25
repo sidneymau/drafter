@@ -15,7 +15,7 @@ from mpl_toolkits.axes_grid1 import Divider, Size
 import numpy as np
 
 
-from . import type
+from . import typesetting
 from . import style
 
 
@@ -33,7 +33,7 @@ MAX_HEIGHT = 11
 
 def setup(styles=[]):
     style.set_style(styles=styles)
-    type.set_type()
+    typesetting.set_type()
 
 
 def cm_to_in(l, /):

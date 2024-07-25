@@ -25,6 +25,7 @@ def set_type(font="monospace", latex=True):
             mpl.rcParams["text.usetex"] = True
             # mpl.rcParams["text.latex.preamble"] = "\everymath{\\tt}"
             mpl.rcParams["text.latex.preamble"] = (
+                # r"\usepackage{courier}"
                 r"\renewcommand*\familydefault{\ttdefault}"  # use typewriter text as default
                 r"\usepackage[noendash,LGRgreek]{mathastext}"  # typeset math as text
                 r"\MTfamily{\ttdefault}"
