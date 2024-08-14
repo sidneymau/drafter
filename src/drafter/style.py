@@ -26,11 +26,11 @@ def set_style(styles=[], restore_defaults=False):
         logger.info(f"using {style} style")
         mstyle.use(f"drafter.styles.{style}")
 
-    if "drafter" in mpl.colormaps:
-        logger.info(f"using drafter colormap")
-        mpl.rcParams["image.cmap"] = "drafter"
-    else:
-        warnings.warn(f"drafter colormap not found")
+    # if "drafter" in mpl.colormaps:
+    #     logger.info(f"using drafter colormap")
+    #     mpl.rcParams["image.cmap"] = "drafter"
+    # else:
+    #     warnings.warn(f"drafter colormap not found")
 
     return None
 
