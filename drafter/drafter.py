@@ -95,6 +95,7 @@ def make_axes(
     cbar_pad=1/8,
     sharex=None,
     sharey=None,
+    squeeze=False,
 ):
 
     logger.info(f"making figure of size ({fig_width}, {fig_height})")
@@ -261,7 +262,17 @@ def make_axes(
 
     logger.info(f"made {axes.size} axes")
 
-    return fig, axes
+    # NOTE this currently does not work because we bypass an internal gridspec...
+    # fig.align_labels()
+    # fig.align_titles()
+
+
+    if squeeze:
+        _axes = axes.item() if axes.size == 1 else axes.squeeze()
+    else:
+        _axes = axes
+
+    return fig, _axes
 
 
 def add_colorbar(
