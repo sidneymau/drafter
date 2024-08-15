@@ -1,7 +1,7 @@
 font.family : monospace
 
 axes.formatter.useoffset: False
-axes.prop_cycle: cycler('color', ['black'])
+axes.prop_cycle: cycler(color=['black']) * cycler(linestyle=['solid', 'dashed', 'dashdot', 'dotted'])
 axes.titlesize : 12  # 12 pts == 1 pica
 axes.labelsize : 10  # 10 pts
 
