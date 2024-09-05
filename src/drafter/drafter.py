@@ -95,7 +95,7 @@ def make_axes(
     cbar_pad=1/8,
     sharex=None,
     sharey=None,
-    squeeze=False,
+    squeeze=True,
 ):
 
     logger.info(f"making figure of size ({fig_width}, {fig_height})")
