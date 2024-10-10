@@ -12,6 +12,7 @@ import matplotlib.figure as mfigure
 import matplotlib.image as mimage
 import matplotlib.ticker as mticker
 from mpl_toolkits.axes_grid1 import Divider, Size
+from matplotlib.backends import backend_pdf
 import numpy as np
 
 
@@ -45,12 +46,12 @@ def in_to_pt(l, /):
 
 
 def make_figure(**kwargs):
-    import matplotlib.pyplot as plt
+    # import matplotlib.pyplot as plt
 
-    backend_name = mpl.get_backend()
-    logger.info(f"making figure with backend {backend_name}")
+    # backend_name = mpl.get_backend()
+    # logger.info(f"making figure with backend {backend_name}")
 
-    fig = plt.figure(**kwargs)
+    # fig = plt.figure(**kwargs)
 
     # fig.patch.set_alpha(0)
 
@@ -63,12 +64,10 @@ def make_figure(**kwargs):
     # fig = mfigure.Figure(**kwargs)
     # canvas = canvas_class(fig)
 
-    # logger.info(f"making figure with pdf backend")
+    logger.info(f"making figure with pdf backend")
 
-    # from matplotlib.backends.backend_pdf import FigureCanvas
-
-    # fig = mfigure.Figure(**kwargs)
-    # canvas = FigureCanvas(fig)
+    fig = mfigure.Figure(**kwargs)
+    canvas = backend_pdf.FigureCanvas(fig)
 
     return fig
 
@@ -99,8 +98,6 @@ def make_axes(
 ):
 
     logger.info(f"making figure of size ({fig_width}, {fig_height})")
-    # fig = plt.figure(figsize=(fig_width, fig_height))
-    # fig = mfigure.Figure(figsize=(fig_width, fig_height))
     fig = make_figure(figsize=(fig_width, fig_height))
 
     fig_width, fig_height = fig.get_size_inches()
